@@ -7,4 +7,5 @@ linter:
 
   rules:
     # avoid_print: false
+    prefer_relative_imports: true
     # prefer_single_quotes: true
