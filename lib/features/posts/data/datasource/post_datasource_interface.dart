@@ -1,5 +1,5 @@
-import '../../../auth/data/model/user_model.dart';
 import '../model/post_model.dart';
+import '../model/user_model.dart';
 
 abstract class PostsDatasourceInterface {
   Future<List<PostModel>> getPosts();

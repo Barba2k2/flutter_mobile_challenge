@@ -1,5 +1,5 @@
 import 'dart:convert';
-import '../../../auth/data/model/user_model.dart';
+import '../model/user_model.dart';
 import 'post_datasource_interface.dart';
 import '../model/post_model.dart';
 import 'package:http/http.dart' as http;

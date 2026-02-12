@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-import '../../../auth/data/model/user_model.dart';
 import '../model/post_model.dart';
+import '../model/user_model.dart';
 import 'post_datasource_interface.dart';
 
 class PostsDioDatasource implements PostsDatasourceInterface {
