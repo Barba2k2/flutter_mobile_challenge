@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../auth/domain/entities/user_entity.dart';
+import '../../domain/entities/user_entity.dart';
 import '../widgets/info_tile.dart';
 
 class AuthorProfilePage extends StatelessWidget {
@@ -46,7 +46,26 @@ class AuthorProfilePage extends StatelessWidget {
               label: 'E-mail',
               value: user.email,
             ),
-            // TODO: add phone, address, website, company when UserEntity is expanded
+            InfoTile(
+              icon: Icons.phone,
+              label: 'Telefone',
+              value: user.phone,
+            ),
+            InfoTile(
+              icon: Icons.location_on,
+              label: 'Endereço',
+              value: user.address,
+            ),
+            InfoTile(
+              icon: Icons.language,
+              label: 'Website',
+              value: user.website,
+            ),
+            InfoTile(
+              icon: Icons.business,
+              label: 'Empresa',
+              value: user.company,
+            ),
           ],
         ),
       ),
