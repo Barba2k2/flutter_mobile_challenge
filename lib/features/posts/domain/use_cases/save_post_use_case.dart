@@ -1,7 +1,3 @@
-import 'package:flutter_mobile_challenge/features/posts/domain/entities/post_entity.dart';
-import 'package:flutter_mobile_challenge/features/posts/domain/repository/post_repository_interface.dart';
-import 'package:dartz/dartz.dart';
-import 'package:flutter_mobile_challenge/shared/typedefs.dart';
 /*
 class SavePostUseCase {
   final PostRepositoryInterface repository; //Injeção de dependência do repositório
