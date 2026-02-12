@@ -1,10 +1,13 @@
-/*
+import '../../../../shared/typedefs.dart';
+import '../entities/post_entity.dart';
+import '../repository/post_repository_interface.dart';
+
 class GetSavedPostsUseCase {
-  final PostRepositoryInterface repository; //Injeção de dependência do repositório
+  final PostRepositoryInterface repository;
 
-  GetSavedPostsUseCase(this.repository); //Construtor que recebe o repositório
+  GetSavedPostsUseCase(this.repository);
 
-  AsyncResultPosts<List<PostEntity>> call() async { //Função assincrona para pegar a lista de posts
-    return await repository.getSavedPosts(); //Chama a função do repositório para pegar a lista de posts salvos
+  AsyncResultPosts<List<PostEntity>> call() async {
+    return await repository.getSavedPosts();
   }
-}*/ //Descomente este código quando o repositório suportar posts salvos no firebase
+}
