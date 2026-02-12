@@ -1,4 +1,4 @@
-import 'package:flutter_mobile_challenge/features/posts/domain/entities/post_entity.dart';
+import '../../domain/entities/post_entity.dart';
 
 class PostModel {
   final int id;
@@ -13,7 +13,8 @@ class PostModel {
     required this.body,
   });
 
-  factory PostModel.fromJson(Map<String, dynamic> json) { //Cria um PostModel (model) a partir de um JSON
+  factory PostModel.fromJson(Map<String, dynamic> json) {
+    // Cria um PostModel (model) a partir de um JSON
     return PostModel(
       id: json['id'],
       userId: json['userId'],
@@ -22,7 +23,8 @@ class PostModel {
     );
   }
 
-  PostEntity toEntity() { //Converte o modelo para a entidade
+  PostEntity toEntity() {
+    // Converte o modelo para a entidade
     return PostEntity(
       id: id,
       userId: userId,
@@ -30,5 +32,4 @@ class PostModel {
       body: body,
     );
   }
-
 }

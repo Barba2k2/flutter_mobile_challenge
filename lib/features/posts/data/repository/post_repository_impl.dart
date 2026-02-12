@@ -1,11 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_mobile_challenge/features/posts/data/datasource/post_datasource_interface.dart';
+import '../datasource/post_datasource_interface.dart';
 import '../../domain/entities/post_entity.dart';
 import '../../domain/repository/post_repository_interface.dart'; // Sua interface
-import 'package:flutter_mobile_challenge/shared/typedefs.dart'; // AsyncResultPosts
-import 'package:flutter_mobile_challenge/features/posts/data/model/post_model.dart';
-
-
+import '../../../../shared/typedefs.dart'; // AsyncResultPosts
 
 class PostsRepositoryImpl implements PostRepositoryInterface {
   final PostsDatasourceInterface datasource;
@@ -15,11 +12,17 @@ class PostsRepositoryImpl implements PostRepositoryInterface {
   @override
   AsyncResultPosts<List<PostEntity>> getPostList() async {
     try {
-      final models = await datasource.getPosts(); // Chama datasource
-      final entities = models.map((model) => model.toEntity()).toList(); // Converte models em entidades
-      return Right(entities); // Sucesso: Right com dados
+      // Chama datasource
+      final models = await datasource.getPosts();
+      // Converte models em entidades
+      final entities = models.map((model) => model.toEntity()).toList();
+      // Sucesso: Right com dados
+      return Right(entities);
     } catch (e) {
-      return Left(Exception('Erro ao buscar posts: $e')); // Erro: Left com Exception
+      // Erro: Left com Exception
+      return Left(
+        Exception('Erro ao buscar posts: $e'),
+      );
     }
   }
 
@@ -30,7 +33,9 @@ class PostsRepositoryImpl implements PostRepositoryInterface {
       final entity = model.toEntity();
       return Right(entity);
     } catch (e) {
-      return Left(Exception('Erro ao buscar post: $e'));
+      return Left(
+        Exception('Erro ao buscar post: $e'),
+      );
     }
   }
 
@@ -47,7 +52,7 @@ class PostsRepositoryImpl implements PostRepositoryInterface {
       await datasource.savePost(model); // Chama datasource
       return Right(null); // Sucesso: Right com void
     } catch (e) {
-      return Left(Exception('Erro ao salvar post: $e'));
+      return Left(Exception('Erro ao salvar post: $e'),);
     }
   }
 
@@ -58,7 +63,7 @@ class PostsRepositoryImpl implements PostRepositoryInterface {
       final entities = models.map((model) => model.toEntity()).toList();
       return Right(entities);
     } catch (e) {
-      return Left(Exception('Erro ao buscar posts salvos: $e'));
+      return Left(Exception('Erro ao buscar posts salvos: $e'),);
     }
   }*/ //Comentado pois o datasource não tem esses métodos, irei descomentar quando implementar salvamento no firebase
 }

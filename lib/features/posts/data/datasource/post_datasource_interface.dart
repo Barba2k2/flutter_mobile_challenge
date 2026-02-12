@@ -1,5 +1,5 @@
-import 'package:flutter_mobile_challenge/features/auth/data/model/user_model.dart';
-import 'package:flutter_mobile_challenge/features/posts/data/model/post_model.dart';
+import '../../../auth/data/model/user_model.dart';
+import '../model/post_model.dart';
 
 abstract class PostsDatasourceInterface {
   Future<List<PostModel>> getPosts();

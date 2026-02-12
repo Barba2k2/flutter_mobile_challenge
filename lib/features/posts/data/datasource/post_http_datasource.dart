@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'package:flutter_mobile_challenge/features/auth/data/model/user_model.dart';
-import 'package:flutter_mobile_challenge/features/posts/data/datasource/post_datasource_interface.dart';
-import 'package:flutter_mobile_challenge/features/posts/data/model/post_model.dart';
+import '../../../auth/data/model/user_model.dart';
+import 'post_datasource_interface.dart';
+import '../model/post_model.dart';
 import 'package:http/http.dart' as http;
-
 
 class PostsHttpDatasource implements PostsDatasourceInterface {
   final http.Client client;
@@ -12,7 +11,9 @@ class PostsHttpDatasource implements PostsDatasourceInterface {
 
   @override
   Future<List<PostModel>> getPosts() async {
-    final response = await client.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+    final response = await client.get(
+      Uri.parse('https://jsonplaceholder.typicode.com/posts'),
+    );
     if (response.statusCode == 200) {
       final List<dynamic> jsonList = json.decode(response.body);
       return jsonList.map((json) => PostModel.fromJson(json)).toList();
@@ -23,7 +24,9 @@ class PostsHttpDatasource implements PostsDatasourceInterface {
 
   @override
   Future<PostModel> getPostById(int id) async {
-    final response = await client.get(Uri.parse('https://jsonplaceholder.typicode.com/posts/$id'));
+    final response = await client.get(
+      Uri.parse('https://jsonplaceholder.typicode.com/posts/$id'),
+    );
     if (response.statusCode == 200) {
       return PostModel.fromJson(json.decode(response.body));
     } else {
@@ -33,7 +36,9 @@ class PostsHttpDatasource implements PostsDatasourceInterface {
 
   @override
   Future<UserModel> getUserById(int id) async {
-    final response = await client.get(Uri.parse('https://jsonplaceholder.typicode.com/users/$id'));
+    final response = await client.get(
+      Uri.parse('https://jsonplaceholder.typicode.com/users/$id'),
+    );
     if (response.statusCode == 200) {
       return UserModel.fromJson(json.decode(response.body));
     } else {
