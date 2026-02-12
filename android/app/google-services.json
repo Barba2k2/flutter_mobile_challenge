@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "737798087898",
+    "project_id": "flutter-bloc-flutterando",
+    "storage_bucket": "flutter-bloc-flutterando.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737798087898:android:46638416251aa7fffb31e3",
+        "android_client_info": {
+          "package_name": "com.example.flutter_mobile_challenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737798087898-fqr2ci89t3o0h17pbfg68ptscf5sqjpa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzgrIxOqbH8ZdHWVlwLue2c4Qe04IdRuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "737798087898-fqr2ci89t3o0h17pbfg68ptscf5sqjpa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
