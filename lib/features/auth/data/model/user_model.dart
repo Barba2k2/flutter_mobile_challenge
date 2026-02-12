@@ -1,6 +1,4 @@
-
-
-import 'package:flutter_mobile_challenge/features/auth/domain/entities/user_entity.dart';
+import '../../domain/entities/user_entity.dart';
 
 class UserModel {
   final int id;
@@ -14,10 +12,11 @@ class UserModel {
     required this.name,
     required this.username,
     required this.email,
-    required this.password
+    required this.password,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) { //Cria um UserModel (model) a partir de um JSON
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    //Cria um UserModel (model) a partir de um JSON
     return UserModel(
       id: json['id'],
       name: json['name'],
@@ -27,7 +26,8 @@ class UserModel {
     );
   }
 
-  UserEntity toEntity() { //Converte o modelo para a entidade
+  UserEntity toEntity() {
+    //Converte o modelo para a entidade
     return UserEntity(
       id: id,
       name: name,
