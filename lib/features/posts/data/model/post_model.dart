@@ -23,8 +23,16 @@ class PostModel {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'userId': userId,
+      'title': title,
+      'body': body,
+    };
+  }
+
   PostEntity toEntity() {
-    // Converte o modelo para a entidade
     return PostEntity(
       id: id,
       userId: userId,
