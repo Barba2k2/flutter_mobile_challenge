@@ -1,28 +1,30 @@
 import 'package:dartz/dartz.dart';
-import '../datasource/post_datasource_interface.dart';
+
+import '../../../../shared/typedefs.dart';
 import '../../domain/entities/post_entity.dart';
-import '../../domain/repository/post_repository_interface.dart'; // Sua interface
-import '../../../../shared/typedefs.dart'; // AsyncResultPosts
+import '../../domain/entities/user_entity.dart';
+import '../../domain/repository/post_repository_interface.dart';
+import '../datasource/post_datasource_interface.dart';
+import '../datasource/post_favorite_datasource_interface.dart';
+import '../model/post_model.dart';
 
 class PostsRepositoryImpl implements PostRepositoryInterface {
   final PostsDatasourceInterface datasource;
+  final PostFavoriteDatasourceInterface favoriteDatasource;
 
-  PostsRepositoryImpl(this.datasource);
+  PostsRepositoryImpl({
+    required this.datasource,
+    required this.favoriteDatasource,
+  });
 
   @override
   AsyncResultPosts<List<PostEntity>> getPostList() async {
     try {
-      // Chama datasource
       final models = await datasource.getPosts();
-      // Converte models em entidades
       final entities = models.map((model) => model.toEntity()).toList();
-      // Sucesso: Right com dados
       return Right(entities);
     } catch (e) {
-      // Erro: Left com Exception
-      return Left(
-        Exception('Erro ao buscar posts: $e'),
-      );
+      return Left(Exception('Erro ao buscar posts: $e'));
     }
   }
 
@@ -30,18 +32,24 @@ class PostsRepositoryImpl implements PostRepositoryInterface {
   AsyncResultPosts<PostEntity> getPostById(int id) async {
     try {
       final model = await datasource.getPostById(id);
-      final entity = model.toEntity();
-      return Right(entity);
+      return Right(model.toEntity());
     } catch (e) {
-      return Left(
-        Exception('Erro ao buscar post: $e'),
-      );
+      return Left(Exception('Erro ao buscar post: $e'));
     }
   }
 
-  /*@override
+  @override
+  AsyncResultPosts<UserEntity> getUserById(int id) async {
+    try {
+      final model = await datasource.getUserById(id);
+      return Right(model.toEntity());
+    } catch (e) {
+      return Left(Exception('Erro ao buscar usuário: $e'));
+    }
+  }
+
+  @override
   AsyncResultPosts<void> savePost(PostEntity post) async {
-    // Para salvamento, assuma que datasource tem método (adicione se necessário)
     try {
       final model = PostModel(
         id: post.id,
@@ -49,21 +57,21 @@ class PostsRepositoryImpl implements PostRepositoryInterface {
         title: post.title,
         body: post.body,
       );
-      await datasource.savePost(model); // Chama datasource
-      return Right(null); // Sucesso: Right com void
+      await favoriteDatasource.savePost(model);
+      return const Right(null);
     } catch (e) {
-      return Left(Exception('Erro ao salvar post: $e'),);
+      return Left(Exception('Erro ao salvar post: $e'));
     }
   }
 
   @override
   AsyncResultPosts<List<PostEntity>> getSavedPosts() async {
     try {
-      final models = await datasource.getSavedPosts();
+      final models = await favoriteDatasource.getSavedPosts();
       final entities = models.map((model) => model.toEntity()).toList();
       return Right(entities);
     } catch (e) {
-      return Left(Exception('Erro ao buscar posts salvos: $e'),);
+      return Left(Exception('Erro ao buscar posts salvos: $e'));
     }
-  }*/ //Comentado pois o datasource não tem esses métodos, irei descomentar quando implementar salvamento no firebase
+  }
 }
