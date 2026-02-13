@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../../domain/entities/post_entity.dart';
+
 abstract class PostsEvent extends Equatable {
   const PostsEvent();
 
@@ -17,10 +19,10 @@ class LoadPostByIdRequested extends PostsEvent { // Evento com parâmetro
   List<Object> get props => [id];
 }
 
-class SavePostRequested extends PostsEvent { // Outro evento
-  final int postId;
-  const SavePostRequested(this.postId);
+class SavePostRequested extends PostsEvent {
+  final PostEntity post;
+  const SavePostRequested(this.post);
 
   @override
-  List<Object> get props => [postId];
+  List<Object> get props => [post];
 }
