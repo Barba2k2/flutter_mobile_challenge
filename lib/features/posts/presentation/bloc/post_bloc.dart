@@ -25,7 +25,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   ) async {
     emit(PostsLoading());
 
-    final result = await _getPostsUseCase();
+    final result = await _getPostsUseCase.getPosts();
 
     result.fold(
       (error) => emit(
@@ -43,7 +43,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   ) async {
     emit(PostsLoading());
 
-    final result = await _getPostByIdUseCase(event.id);
+    final result = await _getPostByIdUseCase.getPostById(event.id);
 
     result.fold(
       (error) => emit(

@@ -7,7 +7,7 @@ class GetSavedPostsUseCase {
 
   GetSavedPostsUseCase(this.repository);
 
-  AsyncResultPosts<List<PostEntity>> call() async {
+  AsyncResultPosts<List<PostEntity>> getSavedPosts() async {
     return await repository.getSavedPosts();
   }
 }

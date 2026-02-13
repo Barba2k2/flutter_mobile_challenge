@@ -7,7 +7,7 @@ class GetUserUseCase {
 
   GetUserUseCase(this.repository);
 
-  AsyncResultPosts<UserEntity> call(int id) async {
+  AsyncResultPosts<UserEntity> getUserById(int id) async {
     return await repository.getUserById(id);
   }
 }

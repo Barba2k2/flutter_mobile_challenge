@@ -9,7 +9,7 @@ class SavePostUseCase {
 
   SavePostUseCase(this.repository);
 
-  AsyncResultPosts<void> call(PostEntity post) async {
+  AsyncResultPosts<void> savePost(PostEntity post) async {
     if (!post.isValid()) {
       return Left(
         Exception('Post inválido'),

@@ -10,7 +10,7 @@ class GetPostByIdUseCase {
   // Construtor que recebe o repositório
   GetPostByIdUseCase(this.repository);
 
-  AsyncResultPosts<PostEntity> call(int id) async {
+  AsyncResultPosts<PostEntity> getPostById(int id) async {
     // Função assincrona para pegar um post pelo ID
     // Chama a função do repositório para pegar o post pelo ID
     return await repository.getPostById(
