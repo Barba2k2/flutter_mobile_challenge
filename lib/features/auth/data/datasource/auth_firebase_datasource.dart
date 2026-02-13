@@ -10,6 +10,13 @@ class AuthFirebaseDatasource implements AuthDatasourceInterface {
   AuthFirebaseDatasource({required this.auth});
 
   @override
+  UserModel? getCurrentUser() {
+    final user = auth.currentUser;
+    if (user == null) return null;
+    return UserModel.fromFirebaseUser(user);
+  }
+
+  @override
   Future<UserModel> loginWithEmail(String email, String password) async {
     final credential = await auth.signInWithEmailAndPassword(
       email: email,

@@ -11,6 +11,19 @@ class AuthRepositoryImpl implements AuthRepositoryInterface {
   AuthRepositoryImpl(this.datasource);
 
   @override
+  AsyncResultAuth<UserEntity> getCurrentUser() async {
+    try {
+      final model = datasource.getCurrentUser();
+      if (model == null) {
+        return Left(Exception('Usuário não autenticado'));
+      }
+      return Right(model.toEntity());
+    } catch (e) {
+      return Left(Exception('Erro ao verificar autenticação: $e'));
+    }
+  }
+
+  @override
   AsyncResultAuth<UserEntity> loginWithEmail(
     String email,
     String password,
