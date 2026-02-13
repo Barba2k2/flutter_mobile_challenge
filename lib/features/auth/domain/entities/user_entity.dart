@@ -1,15 +1,11 @@
-class UserEntity{ //Classe abstrata para representar o usuário
-  final int id;
-  final String name;
-  final String username;
+class UserEntity {
+  final String uid;
   final String email;
-  final String password;
+  final String displayName;
 
   const UserEntity({
-    required this.id,
-    required this.name,
-    required this.username,
+    required this.uid,
     required this.email,
-    required this.password
+    required this.displayName,
   });
 }
