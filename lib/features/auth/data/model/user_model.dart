@@ -1,39 +1,31 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../domain/entities/user_entity.dart';
 
 class UserModel {
-  final int id;
-  final String name;
-  final String username;
+  final String uid;
   final String email;
-  final String password;
+  final String displayName;
 
   UserModel({
-    required this.id,
-    required this.name,
-    required this.username,
+    required this.uid,
     required this.email,
-    required this.password,
+    required this.displayName,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    //Cria um UserModel (model) a partir de um JSON
+  factory UserModel.fromFirebaseUser(User user) {
     return UserModel(
-      id: json['id'],
-      name: json['name'],
-      username: json['username'],
-      email: json['email'],
-      password: json['password'],
+      uid: user.uid,
+      email: user.email ?? '',
+      displayName: user.displayName ?? '',
     );
   }
 
   UserEntity toEntity() {
-    //Converte o modelo para a entidade
     return UserEntity(
-      id: id,
-      name: name,
-      username: username,
+      uid: uid,
       email: email,
-      password: password,
+      displayName: displayName,
     );
   }
 }
