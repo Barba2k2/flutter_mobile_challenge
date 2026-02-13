@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/entities/post_entity.dart';
+import '../bloc/post_bloc.dart';
+import '../bloc/post_event.dart';
 
 class PostDetailPage extends StatelessWidget {
   final PostEntity post;
@@ -28,7 +31,6 @@ class PostDetailPage extends StatelessWidget {
             const SizedBox(height: 24),
             const Divider(),
             const SizedBox(height: 8),
-            // TODO: show author name/email when GetUserUseCase is wired
             Row(
               children: [
                 Expanded(
@@ -46,7 +48,9 @@ class PostDetailPage extends StatelessWidget {
                 Expanded(
                   child: FilledButton.icon(
                     onPressed: () {
-                      // TODO: dispatch SavePostRequested when SavePostUseCase is wired
+                      context.read<PostsBloc>().add(
+                        SavePostRequested(post),
+                      );
                     },
                     icon: const Icon(
                       Icons.bookmark_border_rounded,

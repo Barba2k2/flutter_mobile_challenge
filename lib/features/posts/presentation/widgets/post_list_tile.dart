@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../domain/entities/post_entity.dart';
-import '../bloc/post_bloc.dart';
-import '../pages/post_detail_page.dart';
 
 class PostListTile extends StatelessWidget {
   final PostEntity post;
@@ -32,16 +30,11 @@ class PostListTile extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
       ),
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => BlocProvider.value(
-              value: context.read<PostsBloc>(),
-              child: PostDetailPage(post: post),
-            ),
+      onTap:
+          () => context.push(
+            '/post/${post.id}',
+            extra: post,
           ),
-        );
-      },
     );
   }
 }

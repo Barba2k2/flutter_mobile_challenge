@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../auth/presentation/bloc/auth_event.dart';
 import '../bloc/post_bloc.dart';
 import '../bloc/post_event.dart';
 import '../bloc/post_state.dart';
 import '../widgets/post_list_tile.dart';
 
-class PostPage extends StatelessWidget {
+class PostPage extends StatefulWidget {
   const PostPage({super.key});
+
+  @override
+  State<PostPage> createState() => _PostPageState();
+}
+
+class _PostPageState extends State<PostPage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PostsBloc>().add(LoadPostsRequested());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +31,7 @@ class PostPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              // TODO: dispatch logout event via AuthBloc
+              context.read<AuthBloc>().add(LogoutRequested());
             },
           ),
         ],
