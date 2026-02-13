@@ -1,12 +1,13 @@
+import '../../../../shared/typedefs.dart';
+import '../entities/user_entity.dart';
 import '../repository/auth_repository_interface.dart';
 
-class LoginUseCase {
+class RegisterUseCase {
   final AuthRepositoryInterface repository;
 
-  LoginUseCase(this.repository);
+  RegisterUseCase(this.repository);
 
-  Future call() async {
-    //Chama a função do repositório para fazer registro do usuário
-    return await repository.registerUser();
+  AsyncResultAuth<UserEntity> register(String email, String password) async {
+    return await repository.registerWithEmail(email, password);
   }
 }

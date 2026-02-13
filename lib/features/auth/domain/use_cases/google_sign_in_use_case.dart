@@ -2,12 +2,12 @@ import '../../../../shared/typedefs.dart';
 import '../entities/user_entity.dart';
 import '../repository/auth_repository_interface.dart';
 
-class LoginUseCase {
+class GoogleSignInUseCase {
   final AuthRepositoryInterface repository;
 
-  LoginUseCase(this.repository);
+  GoogleSignInUseCase(this.repository);
 
-  AsyncResultAuth<UserEntity> login(String email, String password) async {
-    return await repository.loginWithEmail(email, password);
+  AsyncResultAuth<UserEntity> signIn() async {
+    return await repository.signInWithGoogle();
   }
 }
